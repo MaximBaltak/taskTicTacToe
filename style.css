@@ -66,6 +66,8 @@
   text-align: center;
   font-size: 30px;
   font-weight: 900;
+  opacity: 1;
+  transition: opacity 0.3s;
 }
 
 .overlay {
@@ -75,7 +77,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  display: none;
+  display: block;
 }
 .overlay .start {
   position: fixed;
@@ -119,7 +121,18 @@
   font-size: 30px;
   padding: 20px;
   box-shadow: 1px 1px 10px black;
-  transition: transform 2s;
+}
+
+@keyframes go {
+  from {
+    transform: translate(-260px, -390px);
+  }
+  50% {
+    transform: translate(800px, -390px);
+  }
+  to {
+    transform: translate(1920px, -390px);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
