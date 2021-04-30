@@ -6,7 +6,37 @@ let overlay = document.querySelector('.overlay'),
     pointsBot = document.querySelectorAll('.points')[1],
     bloksBot = document.querySelectorAll('.block')
 let info = document.querySelector('.information')
+//создание музыки
+let audio = new Audio()
+audio.src = './audio/kr-love-me.mp3'
+//событие для начала проигрования
+document.addEventListener('click', () => {
+    audio.play()
+    audio.loop = true
+})
+// события для изменения громкости при движении колёсика мыши
+document.addEventListener('wheel', e => {
+    let delta = e.deltaY
+    if (delta < 0) {
+        if (audio.volume <= 0.1) {
+            audio.volume = 0
+        } else {
+            audio.volume -= 0.1
+            delta -= e.deltaY
+        }
 
+    } else if (delta > 0) {
+        if (audio.volume >= 0.9) {
+            audio.volume = 1
+        } else {
+            audio.volume += 0.1
+            delta += e.deltaY
+        }
+
+    }
+    console.log(audio.volume)
+})
+// нужные данные для работы логики
 let valueUser
 let valueBot
 let pointsU = 0
@@ -16,7 +46,7 @@ pointsBot.textContent = pointsB
 go.style.transform = 'translateX(-260px)'
 info.style.opacity = '1'
 
-
+//выбор игрока нолик или крестик
 choice.addEventListener('click', e => {
     let target = e.target
     if (target.textContent === 'X') {
@@ -30,7 +60,7 @@ choice.addEventListener('click', e => {
     }
 
 })
-
+//анимация модально окна окончания
 let animationGo = () => {
 
     if (go.style.transform === 'translateX(-260px)') {
@@ -40,7 +70,7 @@ let animationGo = () => {
     }
 }
 
-
+//проверка на победу или ничью
 let check = (value) => {
     if (bloksBot[1].innerHTML === `<p>${value}</p>` && bloksBot[4].innerHTML === `<p>${value}</p>` && bloksBot[7].innerHTML === `<p>${value}</p>`) {
         if (value === valueUser) {
@@ -54,7 +84,7 @@ let check = (value) => {
             })
             pointsUser.textContent = pointsU
             return true
-        } else if (alue === valueBot) {
+        } else if (value === valueBot) {
             go.innerHTML = `<p>Bot победил</p>`
             go.style.backgroundColor = '#8d3939'
             animationGo()
@@ -325,6 +355,7 @@ let check = (value) => {
         return false
     }
 }
+//логика для компьютера
 let botBlocks = (block) => {
     let arr = Array.from(bloksBot)
     let emptyBlocks = arr.filter(el => el.innerHTML === '')
@@ -340,7 +371,7 @@ let botBlocks = (block) => {
 
 
 }
-
+//процесс игры
 blocks.addEventListener('click', e => {
     let target = e.target
     if (target.innerHTML === '') {

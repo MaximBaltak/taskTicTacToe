@@ -1,6 +1,13 @@
 .header {
+  position: relative;
   height: 60px;
   background-color: #57023a;
+}
+.header audio {
+  position: absolute;
+  transform: translate(10px, 10px);
+  width: 300px;
+  height: 30px;
 }
 .header h1 {
   color: white;
