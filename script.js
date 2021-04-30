@@ -382,16 +382,20 @@ blocks.addEventListener('click', e => {
             if (!check(valueUser)) {
                 botBlocks(target)
                 setTimeout(() => {
-                    info.style.opacity = '1'
+
                 }, 1000)
                 setTimeout(() => {
                     check(valueBot)
+
                 }, 1500)
 
 
             }
         }
     }
+    setTimeout(() => {
+        info.style.opacity = '1'
+    }, 2000)
 
 
 })
