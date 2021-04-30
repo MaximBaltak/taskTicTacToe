@@ -110,7 +110,8 @@
 
 .go {
   position: fixed;
-  transform: translate(-260px, -390px);
+  transform: translateX(-260px);
+  top: 50%;
   min-width: 200px;
   height: 100px;
   background-color: #6161e7;
@@ -121,6 +122,7 @@
   font-size: 30px;
   padding: 20px;
   box-shadow: 1px 1px 10px black;
+  transition: transform 6s;
 }
 
 @keyframes go {
